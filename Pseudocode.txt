@@ -22,4 +22,10 @@ To do this:
 
 Need to create a double if statement to adjust the color of the background of each timeslot.
 To do this:
-1. 
+1. Make sure that all the rows include an identifier that allows java to run on any that are tied to the correct information.
+
+2. When rendering the page, make sure that we set a timestamp, then a for loop to test each hour and see if it is before or after the current timestamp.
+
+3. Set those before the timestamp to grey, those after to green if empty, red if full.
+
+
