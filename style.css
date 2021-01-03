@@ -1,0 +1,10 @@
+input {
+    padding: 4%;
+    border-radius: 2%;
+}
+
+button {
+    padding: 4%;
+    border-radius: 4%;
+    background-image: url(./Assets/save-icon.jpg);
+}
