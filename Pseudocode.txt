@@ -1,0 +1,25 @@
+Need to  create the overall architecture of the page in HTML.
+To include:
+- Header that automatically displays today's date.
+- Container that fits the device or screen.
+- Split the container into  9 rows with two columns each, split 10/2 or 11/1 in size
+- Include image of save icon in the right columns.
+- Color of each box changes depending on time of day, relative to current time. Grey if past, green if present/future.
+- Boxes need to allow data entry, and show any data previously saved
+
+
+Need to create a function that saves information entered into a timeslot.
+To do this:
+1. Define a new function that we can call on when someone does a "submit" on one of the timeslots.
+
+2. In this function, take the information in the input area, and save it to local storage.
+    - This will require saving the item in local storage with timeslot tied to it based on which "submit" was pressed.
+
+3. Ensure that the timeslot is showing any information in local storage tied to that timeslot.
+
+4. If the timeslot has information, change the color to red, otherwise leave as green or grey.
+
+
+Need to create a double if statement to adjust the color of the background of each timeslot.
+To do this:
+1. 
