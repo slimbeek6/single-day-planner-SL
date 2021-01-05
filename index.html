@@ -22,56 +22,107 @@
 
     <main class="container">
         <row class="row">
-            <input id="timeslot9" class="col-md-11">
-            <button id="button9" class="col-md-1"></button>
+            <div class="col-md-1">9 AM</div>
+            <input id="timeslot09" class="col-md-10">
+            <button id="button09" class="col-md-1"></button>
         </row>
         
         <row class="row">
-            <input id="timeslot10" class="col-md-11">
+            <div class="col-md-1">10 AM</div>
+            <input id="timeslot10" class="col-md-10">
             <button id="button10" class="col-md-1"></button>
         </row>
 
         <row class="row">
-            <input id="timeslot11" class="col-md-11">
+            <div class="col-md-1">11 AM</div>
+            <input id="timeslot11" class="col-md-10">
             <button id="button11" class="col-md-1"></button>
         </row>
 
         <row class="row">
-            <input id="timeslot12" class="col-md-11">
+            <div class="col-md-1">Noon</div>
+            <input id="timeslot12" class="col-md-10">
             <button id="button12" class="col-md-1"></button>
         </row>
 
         <row class="row">
-            <input id="timeslot1" class="col-md-11">
-            <button id="button1" class="col-md-1"></button>
+            <div class="col-md-1">1 PM</div>
+            <input id="timeslot13" class="col-md-10">
+            <button id="button13" class="col-md-1"></button>
         </row>
 
         <row class="row">
-            <input id="timeslot2" class="col-md-11">
-            <button id="button2" class="col-md-1"></button>
+            <div class="col-md-1">2 PM</div>
+            <input id="timeslot14" class="col-md-10">
+            <button id="button14" class="col-md-1"></button>
         </row>
 
         <row class="row">
-            <input id="timeslot3" class="col-md-11">
-            <button id="button3" class="col-md-1"></button>
+            <div class="col-md-1">3 PM</div>
+            <input id="timeslot15" class="col-md-10">
+            <button id="button15" class="col-md-1"></button>
         </row>
 
         <row class="row">
-            <input id="timeslot4" class="col-md-11">
-            <button id="button4" class="col-md-1"></button>
+            <div class="col-md-1">4 PM</div>
+            <input id="timeslot16" class="col-md-10">
+            <button id="button16" class="col-md-1"></button>
         </row>
 
         <row class="row">
-            <input id="timeslot5" class="col-md-11">
-            <button id="button5" class="col-md-1"></button>
+            <div class="col-md-1">5 PM</div>
+            <input id="timeslot17" class="col-md-10">
+            <button id="button17" class="col-md-1"></button>
         </row>
 
     </main>
 
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script type="text/javascript">
+        
+        // Create a function that writes the input to the input field
+        function writeItem () {
+            var buttonClicked = $(this).attr("id");
+            console.log(buttonClicked.slice(-2));
+            var inputRow = "timeslot" + buttonClicked.slice(-2);
+            console.log("timeslot" + buttonClicked.slice(-2));
+            var inputData = document.getElementById(inputRow).value;
+            console.log(inputData);
+            localStorage.setItem(inputRow,inputData);
+        }
 
-    <script>
+        $("input").each(function() {
+            var rowCheck = $(this).attr("id");
+            console.log(rowCheck);
+            var data = localStorage.getItem(rowCheck);
+            document.getElementById(rowCheck).value = data;
+        })
+        
+        console.log(moment().format('dddd, MMMM Do'));
+        $("#date").text(moment().format('dddd, MMMM Do'));
 
+        var currentTime = moment();
+        
+        
+        $("input").each(function(){
+            var inputTime = parseInt($(this).attr("id").slice(-2));
+            var currentHour = currentTime.hour();
+            
+            if(inputTime < currentHour){
+                $(this).addClass("past");
+            }
+            else if (inputTime > currentHour) {
+                $(this).addClass("future");
+            }
+            else {
+                $(this).addClass("present");
+            }
+        })
+
+        // Create a listener for clicks on the save buttons
+        $(document).on("click","button", writeItem);
 
     </script>
 </body>
