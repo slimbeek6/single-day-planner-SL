@@ -39,10 +39,13 @@ asdfasd
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [Javascript](https://developer.mozilla.org/en-us/docs/web/javascript)
+* [Bootstrap](https://getbootstrap.com/)
+* [jQuery](https://api.jquery.com/)
+* [moment.js](https://momentjs.com/)
 
 ## Deployed Link
 
-* [See Live Site](https://slimbeek6.github.io/password_generator_SML/)
+* [See Live Site](https://slimbeek6.github.io/single-day-planner-SL/)
 
 
 ## Authors
