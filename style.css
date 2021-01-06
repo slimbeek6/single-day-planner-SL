@@ -5,10 +5,8 @@ input {
 
 button {
     border-radius: 4%;
-    background-image: url(./Assets/background-image.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    align-items: center;
+    background-color: rgb(66, 66, 255);
+    color: white;
 }
 
 .past {
