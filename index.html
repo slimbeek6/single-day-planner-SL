@@ -85,32 +85,40 @@
         
         // Create a function that writes the input to the input field
         function writeItem () {
+            // Check which row we need to save by pulling the id of the element clicked
             var buttonClicked = $(this).attr("id");
-            console.log(buttonClicked.slice(-2));
+            // Define the input information to save
             var inputRow = "timeslot" + buttonClicked.slice(-2);
-            console.log("timeslot" + buttonClicked.slice(-2));
+            // Pull the information from the desired input field
             var inputData = document.getElementById(inputRow).value;
-            console.log(inputData);
+            // Save this data to local storage
             localStorage.setItem(inputRow,inputData);
         }
 
+        // Create a function that pulls and displays any previously stored information from local storage for each input field on the schedule
         $("input").each(function() {
-            var rowCheck = $(this).attr("id");
-            console.log(rowCheck);
+            // Start looking at each input field, and pull down the ID from the HTML
+            var rowCheck = $(this).attr("id");        
+            // Define a variable as any information currently stored in local storage
             var data = localStorage.getItem(rowCheck);
+            // Add this information to the page
             document.getElementById(rowCheck).value = data;
         })
         
-        console.log(moment().format('dddd, MMMM Do'));
+        // Set the date item text in the header to the current date from moment
         $("#date").text(moment().format('dddd, MMMM Do'));
 
+        // Set the current time as a variable
         var currentTime = moment();
         
-        
+        // Create a function to set the color of each input field by time.
         $("input").each(function(){
+            // Pull in the 24 hour data saved in the last two characters of the ID attribute
             var inputTime = parseInt($(this).attr("id").slice(-2));
+            // Pull the hour out of the current time
             var currentHour = currentTime.hour();
             
+            // Check whether the input field is past, present, or future, and apply the requisite color via the CSS class.
             if(inputTime < currentHour){
                 $(this).addClass("past");
             }
