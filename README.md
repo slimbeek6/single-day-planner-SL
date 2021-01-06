@@ -38,18 +38,69 @@ Here I added the hour in 24 style, as this is how the moment.js API returns the 
 
 The next major step is calling the date and time, which we do using the moment.js API. This provides us with the current date for the header, as well as a current hour that can be used in additional functions to change the color of each section of the schedule.
 
+```
+// Set the date item text in the header to the current date from moment
+$("#date").text(moment().format('dddd, MMMM Do'));
+
+// Set the current time as a variable
+var currentTime = moment();
+```
+
+**Displaying Saved Data from Local Storage**
+
+After this we needed the ability to pull information from local storage each time the page is loaded and display it in the scheduler if the user has previously saved it.
+
+```
+$("input").each(function() {
+    var rowCheck = $(this).attr("id");        
+    var data = localStorage.getItem(rowCheck);
+    document.getElementById(rowCheck).value = data;
+})
+```
+This ensures that we are always displaying any saved information from the local storage.
+
+**Writing to Local Storage**
+
+Next we need a way to save information that the user loads into any of our input fields, and make sure that it displays in the correct field when called by the display function above.
+
+```
+function writeItem () {
+    var buttonClicked = $(this).attr("id");
+    var inputRow = "timeslot" + buttonClicked.slice(-2);
+    var inputData = document.getElementById(inputRow).value;
+    localStorage.setItem(inputRow,inputData);
+}
+```
+Here we are pulling the id and the hour from the button that was clicked, which is then used to pull the correct input field.  This information is then written to local storage.
 
 
-**Third Thing**
+**Adjusting Field Color by Time of Day**
 
+Finally we need to make sure that the input fields change color as time progresses through the work day to alert the user to the current time-block.
 
+To do this we use an if, else if, else function that pulls in the current time set above using the moment.js API, and compares it to the time attached to the id of each input field to determine the correct CSS Class to assign.
 
+```
+$("input").each(function(){
 
-**Fourth Thing**
+    // Pull in the 24 hour data saved in the last two characters of the ID attribute
+    var inputTime = parseInt($(this).attr("id").slice(-2));
 
+    // Pull the hour out of the current time
+    var currentHour = currentTime.hour();
+            
+    if(inputTime < currentHour){
+        $(this).addClass("past");
+    }
+    else if (inputTime > currentHour) {
+        $(this).addClass("future");
+    }
+    else {
+        $(this).addClass("present");
+    }
+})
+```
 
-
-**Fifth Thing**
 
 <hr>
 
